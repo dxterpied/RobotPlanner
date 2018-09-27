@@ -17,7 +17,7 @@ import multiprocessing
 import unittest
 import timeit
 
-import partC
+import robotPlanner
 import robot
 
 PI = math.pi
@@ -112,7 +112,7 @@ def execute_student_plan(data, warehouse, todo, max_distance, max_steering, nois
     nbr_boxes = len(todo)
 
     # Initialize the student planner
-    student_planner = partC.OnlineDeliveryPlanner(nbr_boxes, max_distance, max_steering, verbose = verbose)
+    student_planner = robotPlanner.OnlineDeliveryPlanner(nbr_boxes, max_distance, max_steering, verbose = verbose)
 
     # Initialize the State of the robot/warehouse
     state = State(warehouse, todo, max_distance, max_steering)
@@ -999,7 +999,7 @@ class State:
 
 
 # CREDIT TO: Jay W J for test class (See testing_suite_partA.py)
-class PartCTestCase(unittest.TestCase):
+class robotPlannerTestCase(unittest.TestCase):
     results = ['', 'PART C TEST CASE RESULTS']
     SCORE_TEMPLATE = "\n".join((
         "\n-----------",
@@ -1153,6 +1153,6 @@ class PartCTestCase(unittest.TestCase):
     
 
 all_suites = map(lambda x: unittest.TestLoader().loadTestsFromTestCase(x), 
-    [PartCTestCase])
+    [robotPlannerTestCase])
 all_tests = unittest.TestSuite(all_suites)
 unittest.TextTestRunner(verbosity=2).run(all_tests)
